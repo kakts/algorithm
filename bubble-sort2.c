@@ -6,12 +6,17 @@
 
 int sort[N];
 
+/**
+ * 一回ループを行うごとに配列の後方要素はループ済みになっている
+ * ループの回数を保持する変数 kを追加し、ループ回数を減らす
+ */
 void BubbleSort(void) {
     int i, tmp, flag;
-
+    
+    int k;
     do {
         flag = 0;
-        for (i = 0; i < N - 1; i++) {
+        for (i = 0; i < N - 1 - k; i++) {
             // 第１要素からループして次の要素との大小比較
             if (sort[i] > sort[i + 1]) {
                 flag = 1;
@@ -20,6 +25,7 @@ void BubbleSort(void) {
                 sort[i + 1] = tmp;
             }
         }
+        k++;
     } while (flag == 1);
 }
 
