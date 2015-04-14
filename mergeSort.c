@@ -62,7 +62,7 @@ int main(void) {
     printf("sort end\n");
 
     for (i = 0; i < N; i++){
-        printf("%d ", sort[i]);
+        printf("%d \n", sort[i]);
     }
 
     return 0;
