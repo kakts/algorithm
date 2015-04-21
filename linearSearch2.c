@@ -6,23 +6,34 @@
 #define N (10)
 
 /**
+ * linear search algorithm using sentinel-value
  * @param x 探し出す値
  * @param *a 検索対象の配列
  * @param num 配列の要素数
  */
 int linear_search(int x, int *a, int num) {
-
     int n = 0;
+    int t;
 
-    while (n < num && a[n] != x) {
+    // 配列の最後の要素をxと入れ替え
+    t = a[num - 1];
+    a[num - 1] = x;
+
+    // 値が見つかるまでループ
+    // 番兵を用いることにより、nと配列長の比較をしなくてすむため、
+    // 計算量が減る　番兵を使う理由
+    // 配列の最後の要素にxを入れているため、nの値が配列長を超えることはない
+    while (a[n] != x) {
         n++;
     }
 
-    if (n < num) {
+    if (n < num - 1) {
         return n;
     }
+    if (t == x) {
+        return num;
+    }
 
-    // 見つからなかった場合
     return NOT_FOUND;
 }
 
@@ -41,7 +52,7 @@ int main(void) {
     printf("\n 探したい数字を入力してください: ");
     scanf("%d", &searchNum);
 
-    r = linear_search(searchNum, array);
+    r = linear_search(searchNum, array, N);
 
     if (r == NOT_FOUND) {
         printf("%dは見つかりません\n", searchNum);
